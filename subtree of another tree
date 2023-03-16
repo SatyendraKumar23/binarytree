@@ -1,0 +1,72 @@
+public class subtree {
+    static class node
+    {
+        int data;
+        node left;
+        node right;
+        node Node;
+
+        public node(int data)
+        {
+            this.data=data;
+            this.left=null;
+            this.right=null;
+
+        }
+
+    }
+    public static boolean isidentical(node Node,node subroot)
+    {
+        if(Node ==null&&subroot==null)
+        {
+            return true;
+
+        }
+        else if(Node==null||subroot==null||Node.data!=Node.data)
+        {
+            return false;
+
+        }
+        if(!isidentical(Node.left,subroot.left))
+        {
+            return false;
+        }
+        if(!isidentical(Node.right,subroot.right))
+        {
+            return false;
+        }
+        return true;
+    }
+    public static boolean issubtree(node root,node subroot)
+    {
+        if(root==null)
+        {
+            return false;
+        }
+        if(root.data==subroot.data)
+        {
+            if(isidentical(root,subroot))
+            {
+                return true;
+            }
+        }
+        return issubtree(root.left,subroot)||issubtree(root.right,subroot);
+
+    }
+    public static void main(String[] args) {
+        node root=new node(1);
+        root.left=new node(2);
+        root.right=new node(3);
+        root.left.left=new node(4);
+        root.left.right=new node(5);
+        root.right.left=new node(6);
+
+
+        node subroot=new node(2);
+        subroot.left=new node(4);
+        subroot.right=new node(5);
+
+        System.out.println(issubtree(root,subroot));
+    }
+    
+}
